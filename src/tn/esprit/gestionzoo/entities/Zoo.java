@@ -1,14 +1,26 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
     private Animal[] animals;
     private String name;
     private String city;
     private static final int nbrCages = 25;
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("tn.esprit.gestionzoo.entities.Zoo name cannot be empty!");
+        }
+    }
+    public String getName() {
+        return name;
+    }
     public Zoo() {
         this.animals = new Animal[nbrCages];
     }
     public  Zoo(String N, String C){
         this.animals = new Animal[nbrCages];
-        this.name = N;
+        setName(N);
         this.city = C;
     }
     public boolean isZooFull(){
@@ -36,4 +48,16 @@ public class Zoo {
             return z2;
         }
     }
+    public void addAnimals(Animal a){
+        if(isZooFull()){
+            System.out.println("the zoo is full");
+        }
+        for(int i = 0; i < animals.length; i++){
+            if(animals[i] == null){
+                animals[i] = a;
+                break;
+            }
+        }
+    }
 }
+
